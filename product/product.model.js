@@ -1,34 +1,30 @@
-const { timeStamp } = require("console");
-const mangoose = require("mangoose");
-const { default: mongoose } = require("mongoose");
-const { type } = require("os");
-const { types } = require("util");
+const mongoose = require("mongoose");
 
-const productSchema = mangoose.Schema(
+const productSchema = mongoose.Schema(
   {
     name: {
-      type: "string",
-      required: [true, " Enter your name : "],
+      type: String,
+      required: [true, "Enter your name:"],
     },
     quantity: {
-      type: "Number",
+      type: Number,
       required: true,
       default: 0,
     },
     price: {
-      type: "Number",
+      type: Number,
       required: true,
       default: 0,
     },
     Image: {
-      type: "string",
+      type: String,
       required: false,
     },
   },
   {
-    timeStamp: true,
+    timestamps: true, // Automatically adds createdAt and updatedAt fields
   }
 );
 
-const product = mongoose.model("Product", productSchema);
-module.exports = product;
+const Product = mongoose.model("Product", productSchema);
+module.exports = Product;
